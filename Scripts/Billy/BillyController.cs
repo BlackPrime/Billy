@@ -4,7 +4,8 @@ using System.Collections;
 public class BillyController : MonoBehaviour
 {
 	public float life = 100f;
-	public float speed = 10f;
+	public float speedX = 100f;
+	public float speedY = 10f;
 	public float jumpStrength = 10f;
 
 	private bool isDead;
@@ -36,7 +37,7 @@ public class BillyController : MonoBehaviour
 
 	private void move()
 	{
-		playerRigidbody.MovePosition (new Vector3(h * speed * Time.deltaTime + transform.position.x, transform.position.y, v * speed * Time.deltaTime + transform.position.z));
+		playerRigidbody.MovePosition (new Vector3(h * speedX * Time.deltaTime + transform.position.x, transform.position.y, v * speedY * Time.deltaTime + transform.position.z));
 	}
 
 	private void jump()
@@ -54,18 +55,12 @@ public class BillyController : MonoBehaviour
 	
 	private void OnCollisionEnter(Collision other)
 	{
-		/*if (other.gameObject.tag == "Ground")
-			isGrounded = true;*/
 		isGrounded = other.gameObject.tag == "Ground" || isGrounded;
-		Debug.Log ("bit-e");
 	}
 	
 	private void OnCollisionExit(Collision other)
 	{
-		/*if (other.gameObject.tag == "Ground")
-			isGrounded = false;*/
 		isGrounded = !(other.gameObject.tag == "Ground") && isGrounded;
-		Debug.Log ("prou-t");
 	}
 }
 
