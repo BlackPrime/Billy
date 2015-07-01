@@ -12,6 +12,7 @@ public class BillyController : MonoBehaviour
 
 	private float h;
 	private float v;
+	private float j;
 	private Rigidbody playerRigidbody;
 
 	private void Start ()
@@ -24,10 +25,11 @@ public class BillyController : MonoBehaviour
 	{
 		h = Input.GetAxis ("Horizontal");
 		v = Input.GetAxis("Vertical");
+		j = Input.GetAxis("Jump");
 
 		if(!isDying()){
 			move();
-			if(Input.GetKey(KeyCode.Space))
+			if(j > 0f)
 				jump();
 		}
 	}
@@ -52,12 +54,18 @@ public class BillyController : MonoBehaviour
 	
 	private void OnCollisionEnter(Collision other)
 	{
+		/*if (other.gameObject.tag == "Ground")
+			isGrounded = true;*/
 		isGrounded = other.gameObject.tag == "Ground" || isGrounded;
+		Debug.Log ("bit-e");
 	}
 	
 	private void OnCollisionExit(Collision other)
 	{
+		/*if (other.gameObject.tag == "Ground")
+			isGrounded = false;*/
 		isGrounded = !(other.gameObject.tag == "Ground") && isGrounded;
+		Debug.Log ("prou-t");
 	}
 }
 
