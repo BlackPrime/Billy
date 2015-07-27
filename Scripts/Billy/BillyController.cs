@@ -38,6 +38,10 @@ public class BillyController : MonoBehaviour
 	private void move()
 	{
 		playerRigidbody.MovePosition (new Vector3(h * speedX * Time.deltaTime + transform.position.x, transform.position.y, v * speedY * Time.deltaTime + transform.position.z));
+		if (h < 0)
+			playerRigidbody.transform.LookAt (transform.position - new Vector3 (0f, 0f, 1f));
+		else if(h > 0)
+			playerRigidbody.transform.LookAt (transform.position + new Vector3 (0f, 0f, 1f));
 	}
 
 	private void jump()
